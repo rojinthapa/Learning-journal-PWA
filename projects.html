@@ -7,37 +7,85 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="journal.html">Journal</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div>
 
     <main class="main-content">
+        <button id="theme-toggle">Toggle Dark Mode</button> 
+        
         <h1>My Projects</h1>
+        <p>A showcase of my work throughout the learning weeks of Mobile Application Development</p>
         
         <div class="projects-grid">
-            <div class="project-card">
-                <h2>Temperature Converter PWA</h2>
-                <p>A progressive web app that converts temperatures between Celsius, Fahrenheit, and Kelvin. Features offline functionality and mobile-responsive design.</p>
-                <p><strong>Technologies:</strong> HTML, CSS, JavaScript, PWA, Service Workers</p>
+            
+            <div class="project-card project-card-full-row">
+                <h2>Learning Journal PWA - Lab 4</h2>
+                <p>Enhancing the PWA with persistent data storage using Local Storage, geolocation and notifications using browser APIs, and weather integration using Third-Party APIs.</p>
+                <p><strong>Technologies:</strong> Browser API, Storage API, Third-Party API, JavaScript</p>
                 <div class="project-links">
-                    <a href="https://github.com/rojinthapa/TemperatureConverterPWA" target="_blank" class="project-link">GitHub</a>
-                    <a href="https://rojinthapa.github.io/TemperatureConverterPWA/" target="_blank" class="project-link">GitHub Pages</a>
-                    <a href="https://rojinthapa.pythonanywhere.com/" target="_blank" class="project-link">PythonAnywhere</a>
+                    <a href="https://github.com/rojinthapa/Learning-journal-PWA" target="_blank" class="project-link">GitHub Repo</a>
+                    <a href="https://rojinthapa.github.io/Learning-journal-PWA/" class="project-link">Live Demo</a>
+                    <a class="project-link project-status-completed">Completed</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Learning Journal PWA - Lab 3</h2>
+                <p>Enhanced the PWA with reusable navigation, live date display, and dark mode toggle using JavaScript DOM manipulation.</p>
+                <p><strong>Technologies:</strong> JavaScript, DOM Manipulation, Interactive Features</p>
+                <div class="project-links">
+                    <a href="https://github.com/rojinthapa/Learning-journal-PWA" target="_blank" class="project-link">GitHub Repo</a>
+                    <a href="https://rojinthapa.github.io/Learning-journal-PWA/" class="project-link">Live Demo</a>
+                    <a class="project-link project-status-completed">Completed</a>
                 </div>
             </div>
             
             <div class="project-card">
-                <h2>Learning Journal PWA</h2>
-                <p>A mobile-first progressive web app documenting my learning journey in mobile application development with responsive design.</p>
-                <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, Mobile-First Design</p>
+                <h2>Learning Journal PWA - Lab 2</h2>
+                <p>Built the foundation of a progressive web app with mobile-first responsive design, Flexbox/Grid layouts, and professional styling.</p>
+                <p><strong>Technologies:</strong> HTML5, CSS3, Responsive Layout</p>
                 <div class="project-links">
-                    <a href="https://github.com/rojinthapa/Learning-journal-PWA" target="_blank" class="project-link">GitHub</a>
-                    <a href="https://rojinthapa.github.io/Learning-journal-PWA/" class="project-link">Live GitHub</a>
+                    <a href="https://github.com/rojinthapa/Learning-journal-PWA" target="_blank" class="project-link">GitHub Repo</a>
+                    <a href="https://rojinthapa.github.io/Learning-journal-PWA/" class="project-link">Live Demo</a>
+                    <a class="project-link project-status-completed">Completed</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Temperature Converter PWA</h2>
+                <p>A progressive web app that converts temperatures between Celsius, Fahrenheit, and Kelvin. Features offline functionality and can be installed as a standalone app.</p>
+                <p><strong>Technologies:</strong> HTML5, CSS3, JavaScript, PWA</p>
+                <div class="project-links">
+                    <a href="https://github.com/rojinthapa/TemperatureConverterPWA" target="_blank" class="project-link">GitHub Repo</a>
+                    <a href="https://rojinthapa.github.io/TemperatureConverterPWA/" target="_blank" class="project-link">Live Demo</a>
+                    <a class="project-link project-status-completed">Completed</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>PythonAnywhere Deployment</h2>
+                <p>Successfully deployed the Temperature Converter PWA to PythonAnywhere, learning multi-platform deployment strategies.</p>
+                <p><strong>Technologies:</strong> PythonAnywhere, Web Hosting</p>
+                <div class="project-links">
+                    <a href="https://rojinthapa.pythonanywhere.com/" target="_blank" class="project-link">Live Demo</a>
+                    <a class="project-link project-status-completed">Completed</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>First Android App</h2>
+                <p>Created my first native Android mobile application, learning Android development fundamentals and Kotlin programming.</p>
+                <p><strong>Technologies:</strong> Android Studio, Kotlin</p>
+                <div class="project-links">
+                    <a class="project-link project-status-completed">Completed</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Future Labs</h2>
+                <p>Continuing to enhance this Learning Journal PWA with new features such as advanced APIs, advanced JavaScript, and mobile optimizations.</p>
+                <p><strong>Technologies:</strong> APIs, Advanced Features, Mobile Optimization</p>
+                <div class="project-links">
+                    <a class="project-link project-status-inprogress">In Progress</a>
                 </div>
             </div>
         </div>
@@ -46,5 +94,7 @@
     <footer>
         <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
     </footer>
+    
+    <script src="js/script.js"></script>
 </body>
 </html>
