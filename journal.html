@@ -7,20 +7,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="journal.html" class="active">Journal</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div>
 
     <main class="main-content">
+        <button id="theme-toggle">Toggle Dark Mode</button> 
+        
         <h1>Learning Journal</h1>
         
         <div class="journal-entry">
-            <h3>Week 2 - Frontend Fundamentals</h>
+            <h3>Week 3 - JavaScript & DOM Manipulation</h3>
+            <p><strong>Topics Covered:</strong> HTML DOM Manipulation, Reusable Components, Event Handling, Theme Switching, Date Object.</p>
+            
+            <h4>Journal Questions:</h4>
+            
+            <p><strong>Which DOM selection methods did you use, and why did you choose them?</strong></p>
+            <p>I utilized two primary DOM selection methods:
+                <ul>
+                    <li><strong>`document.getElementById()`</strong>: This was the primary selection method used for targeting unique elements like the `#nav-placeholder`, `#theme-toggle`, and the `#live-date-time` display. I chose this because it is the fastest and most direct way to get an element by its ID.</li>
+                    <li><strong>`document.querySelectorAll('nav-menu a')`</strong>: This was essential for selecting <strong>multiple</strong> navigation links (the anchors within the nav menu) so I could iterate through them and correctly apply the <strong>`active`</strong> CSS class. This method allowed me to easily target the elements needed for highlighting the current page.</li>
+                </ul>
+            </p>
+            
+            <p><strong>What was the most challenging part about linking JavaScript with your HTML?</strong></p>
+            <p>A challenge was ensuring all necessary DOM elements were fully loaded before the script attempted to manipulate them. Placing the <strong>`&lt;script&gt;`</strong> tag right before the closing <strong>`&lt;/body&gt;`</strong> tag guaranteed this, allowing the JavaScript to correctly inject the navigation and attach event listeners. Managing the logic to dynamically assign the <strong>`active`</strong> class to the navigation link, especially handling root URLs versus `index.html`, also required careful attention.</p>
+            
+            <p><strong>How did you test and debug your JavaScript code?</strong></p>
+            <p>I debugged using the browser's Developer Tools extensively:
+                <ul>
+                    <li><strong>Console</strong>: I used <strong>`console.log()`</strong> to verify the output of variables (like the current URL path or the <strong>`Date()`</strong> object) and confirm event handlers were firing correctly.</li>
+                    <li><strong>Elements Tab</strong>: I inspected the HTML structure to visually confirm that the <strong>`&lt;nav&gt;`</strong> block was correctly injected into the `#nav-placeholder` and that the <strong>`body`</strong> element gained the <strong>`dark-mode`</strong> class (confirming the CSS style change) when the theme switcher was clicked.</li>
+                    <li><strong>Sources Tab</strong>: I set <strong>breakpoints</strong> within <strong>`script.js`</strong> to step through the logic line-by-line, which was useful for debugging the event handling and the navigation's active state assignment.</li>
+                </ul>
+            </p>
+        </div>
+        
+        <div class="journal-entry">
+            <h3>Week 2 - Frontend Fundamentals</h3> 
             <p><strong>Topics Covered:</strong> HTML5, CSS3, Mobile-First Design, Responsive Layouts</p>
             
             <h4>Journal Questions:</h4>
@@ -64,5 +86,7 @@
     <footer>
         <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
     </footer>
+    
+    <script src="js/script.js"></script>
 </body>
 </html>
