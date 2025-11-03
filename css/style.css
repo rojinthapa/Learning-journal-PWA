@@ -11,10 +11,10 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
-    transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- Dark Mode Styles (Controlled by JavaScript) --- */
+/* --- Dark Mode Styles --- */
 body.dark-mode {
     color: #ecf0f1;
     background-color: #1c1c1c;
@@ -45,30 +45,30 @@ body.dark-mode footer {
     background: #34495e;
 }
 
-/* Theme Switcher Button Style (FIXED: Small, circular icon style) */
+/* Dark mode support for list items */
+body.dark-mode .card li {
+    background: #34495e;
+    color: #ecf0f1;
+}
+
+/* Theme Switcher Button */
 #theme-toggle {
-    /* Basic style */
     background: #3498db;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 50%; /* Make it round */
-    
-    /* Small, fixed size */
-    width: 40px; 
+    border-radius: 50%;
+    width: 40px;
     height: 40px;
-    padding: 0; /* Remove padding to keep size clean */
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem; /* Size of the icon/text inside */
-    
-    /* FIX: Ensure it is fixed, positioned close to the edge, and always on top */
-    position: fixed; 
-    top: 10px; /* Closer to the top edge */
-    right: 10px; /* Closer to the right edge */
-    z-index: 2147483647; /* Highest possible z-index to prevent overlapping */
-    
+    font-size: 1.2rem;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 2147483647;
     transition: background-color 0.3s;
 }
 
@@ -76,7 +76,7 @@ body.dark-mode footer {
     background: #2980b9;
 }
 
-/* Mobile-first navigation */
+/* Navigation */
 .navbar {
     background: #2c3e50;
     padding: 1rem;
@@ -107,8 +107,7 @@ body.dark-mode footer {
 
 /* Main content */
 .main-content {
-    /* Ensure content starts below the fixed navbar */
-    margin-top: 80px; 
+    margin-top: 80px;
     padding: 1rem;
     max-width: 1200px;
     margin-left: auto;
@@ -130,7 +129,7 @@ body.dark-mode footer {
     margin-bottom: 1rem;
 }
 
-/* Cards and grid */
+/* Cards */
 .card {
     background: white;
     padding: 1.5rem;
@@ -160,26 +159,10 @@ body.dark-mode footer {
 .projects-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: 1fr; /* Default: Single column layout for mobile */
+    grid-template-columns: 1fr;
 }
 
-/* Style for status badges */
-.project-status-completed {
-    background: #27ae60 !important; /* Green */
-    cursor: default;
-}
-
-.project-status-inprogress {
-    background: #f39c12 !important; /* Orange */
-    cursor: default;
-}
-
-/* Style for cards that span the full row (like Lab 4) */
-.project-card-full-row {
-    grid-column: 1 / -1; 
-}
-
-
+/* Project cards */
 .project-card {
     background: white;
     padding: 1.5rem;
@@ -188,7 +171,22 @@ body.dark-mode footer {
     border-top: 4px solid #3498db;
 }
 
-/* About section */
+.project-card-full-row {
+    grid-column: 1 / -1;
+}
+
+/* Status badges */
+.project-status-completed {
+    background: #27ae60 !important;
+    cursor: default;
+}
+
+.project-status-inprogress {
+    background: #f39c12 !important;
+    cursor: default;
+}
+
+/* Profile section */
 .profile {
     text-align: center;
     padding: 2rem;
@@ -203,39 +201,37 @@ footer {
     margin-top: 2rem;
 }
 
-/* Tablet styles (2-column layout) */
+/* Responsive styles */
 @media (min-width: 768px) {
     .hero h1 {
         font-size: 2.5rem;
     }
-    
-    /* Set projects-grid to 2 columns for tablet/desktop */
+
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .nav-menu {
         justify-content: center;
         gap: 2rem;
     }
 }
 
-/* Desktop styles (Keeping 2-column layout from previous review) */
 @media (min-width: 1024px) {
     .main-content {
         padding: 2rem;
     }
-    
-    .projects-grid { 
+
+    .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .hero {
         padding: 4rem 2rem;
     }
 }
 
-/* Project links styling */
+/* Project links */
 .project-links {
     margin-top: 1rem;
     display: flex;
@@ -260,7 +256,7 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Make sure links are visible in content */
+/* Link styling in cards */
 .card a {
     color: #3498db;
     text-decoration: none;
@@ -270,6 +266,7 @@ footer {
     text-decoration: underline;
 }
 
+/* List styling */
 .card ul {
     list-style: none;
     padding-left: 0;
