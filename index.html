@@ -7,18 +7,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-menu">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="journal.html">Journal</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+    <div id="nav-placeholder"></div> 
 
     <main class="main-content">
+        <button id="theme-toggle">Toggle Dark Mode</button> 
+        
         <section class="hero">
             <h1>Welcome to My Learning Journal</h1>
+            <p id="live-date-time"></p> 
             <p>Documenting my journey through Mobile Application Development</p>
         </section>
 
@@ -31,8 +27,8 @@
         <div class="card">
             <h2>Recent Journal Entries</h2>
             <div class="journal-entry">
-                <h3>Week 1 - Getting Started</h3>
-                <p>Setting up the development environment and learning the basics of PWAs...</p>
+                <h3>Week 3 - JavaScript & DOM Manipulation</h3>
+                <p>Focusing on building reusable components and adding interactivity using the DOM.</p>
                 <a href="journal.html">Read more</a>
             </div>
         </div>
@@ -41,5 +37,7 @@
     <footer>
         <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
     </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
