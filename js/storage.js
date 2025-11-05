@@ -3,7 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('entry-text');
   const list = document.getElementById('entry-list');
 
+  // Request permission on load if not already granted
+  if ('Notification' in window && Notification.permission !== 'granted') {
+    Notification.requestPermission().then(permission => {
+      console.log('Notification permission:', permission);
+    });
+  }
+
   function notifyUser(message) {
+    console.log('Triggering notification:', message);
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification(message);
     } else {
