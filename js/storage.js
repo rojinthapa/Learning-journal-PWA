@@ -63,3 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadEntries();
 });
+
+function notifyUser(message) {
+  console.log("Notification permission:", Notification.permission);
+  console.log("Triggering notification:", message);
+
+  if ('Notification' in window && Notification.permission === 'granted') {
+    try {
+      new Notification(message);
+    } catch (err) {
+      console.error("Notification error:", err);
+    }
+  } else {
+    alert(message); // fallback
+  }
+}
