@@ -43,6 +43,26 @@
       <div id="youtube-video"></div>
     </section>
 
+<!--  Week 5 Entry -->
+<div class="journal-entry">
+    <h3>Week 5 – Python & JSON Backend Data</h3>
+    <p><strong>Topics Covered:</strong> Python JSON manipulation, File-based storage, Fetch API, Data persistence</p>
+
+    <h4>Journal Questions:</h4>
+
+    <p><strong>How is storing data in a JSON file different from using browser storage?</strong></p>
+    <p>JSON file storage persists on the server/file system and can be easily shared, backed up, or processed by other applications. Browser storage (like localStorage) is client-side only and limited to the specific browser/device. JSON files are better for permanent records, while browser storage is ideal for temporary session data.</p>
+
+    <p><strong>How did you use Python to create or update your JSON file?</strong></p>
+    <p>I created a Python script (<code>save_entry.py</code>) that takes user input via the command line, adds a timestamp, and appends the reflection to a JSON array. The script uses <code>json.load()</code> to read existing data and <code>json.dump()</code> to write the updated array back to the file with proper formatting.</p>
+
+    <p><strong>What does your PWA show locally, and what will users see on GitHub? Are they the same? Why or why not?</strong></p>
+    <p>Locally, the PWA shows actual reflections loaded from the JSON file (if the Python script has been run). On GitHub Pages, users will see an "Unable to load" message because GitHub Pages serves static files only and cannot execute Python scripts or maintain file changes. They're different due to the static nature of GitHub Pages hosting.</p>
+
+    <p><strong>What extra feature did you add to your PWA using the JSON file, and why?</strong></p>
+    <p>I added an <strong>Export button</strong> that allows users to download their reflections as a JSON file for backup or sharing. I also included a <strong>reflection counter</strong> to show the total number of entries. These features enhance usability by providing data portability and quick insights into the collection size.</p>
+</div>
+
     <!--  Week 4 Entry -->
     <div class="journal-entry">
       <h3>Week 4 – APIs & Progressive Enhancement</h3>
