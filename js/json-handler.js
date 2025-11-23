@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadJSONReflections() {
-        fetch('backend/reflections.json')
+        fetch('./backend/reflections.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('JSON file not found');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Browser API: Show notification
                 if ('Notification' in window && Notification.permission === 'granted') {
-                    new Notification(`📚 Loaded ${reflections.length} reflections from JSON!`);
+                    new Notification(` Loaded ${reflections.length} reflections from JSON!`);
                 }
             })
             .catch(error => {
