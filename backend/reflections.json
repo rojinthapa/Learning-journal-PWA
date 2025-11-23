@@ -1,23 +1,22 @@
 [
   {
     "date": "2025-11-23 11:30:20",
-    "text": "Learned about Python JSON manipulation today. It's interesting how we can use Python as a backend for web apps.",
+    "text": "Learned about Python JSON manipulation today. It's interesting how we can use Python as a backend for web apps."
   },
   {
     "date": "2025-11-23 11:36:05", 
-    "text": "Working on integrating JSON with my PWA. The fetch API makes it easy to load external data files.",
+    "text": "Working on integrating JSON with my PWA. The fetch API makes it easy to load external data files."
   },
   {
     "date": "2025-11-23 11:45:33",
-    "text": "Successfully added export functionality to my Learning Journal. Users can now download their reflections as JSON files!",
+    "text": "Successfully added export functionality to my Learning Journal. Users can now download their reflections as JSON files!"
   },
   {
     "date": "2025-11-23 11:49:43",
-    "text": "Comparing browser storage vs JSON file storage. Each has different use cases - localStorage for temporary data, JSON files for permanent records.",
+    "text": "Comparing browser storage vs JSON file storage. Each has different use cases - localStorage for temporary data, JSON files for permanent records."
   },
   {
     "date": "2025-11-23 11:51:02",
-    "text": "Finalizing Lab 5 requirements. The reflection counter feature helps users see how many entries they've created.",
-   
+    "text": "Finalizing Lab 5 requirements. The reflection counter feature helps users see how many entries they've created."
   }
 ]
