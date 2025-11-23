@@ -6,11 +6,11 @@ def save_reflection():
     # Get user input
     reflection_text = input("Enter your reflection: ")
     
-    # Create reflection object
+    # Create reflection object WITHOUT ID
     reflection = {
         "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "text": reflection_text,
-        "id": datetime.datetime.now().timestamp()
+        "text": reflection_text
+        # REMOVED: "id": datetime.datetime.now().timestamp()
     }
     
     # Read existing reflections
