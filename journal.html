@@ -14,24 +14,36 @@
 
     <h1>Learning Journal</h1>
 
-    <!-- ✅ Storage API: Journal Entry Form -->
+    <!--  Storage API: Journal Entry Form -->
     <section class="card">
       <h2>Write a Journal Entry</h2>
       <form id="entry-form">
         <textarea id="entry-text" rows="5" placeholder="Write your journal entry..."></textarea><br>
-        <button type="submit" class="project-link">💾 Save Entry</button>
+        <button type="submit" class="project-link"> Save Entry</button>
       </form>
       <h3 style="margin-top: 1.5rem;">Saved Entries</h3>
       <ul id="entry-list" style="list-style: none; padding-left: 0;"></ul>
     </section>
 
-    <!-- ✅ Third-Party API: YouTube Embed -->
+<!--  JSON Backend Data Section -->
+<section class="card">
+    <h2>Python JSON Reflections</h2>
+    <div class="json-controls">
+        <button id="load-json" class="project-link"> Load JSON Reflections</button>
+        <button id="export-json" class="project-link"> Export JSON</button>
+        <span id="reflection-count" style="margin-left: 1rem; font-weight: bold;"></span>
+    </div>
+    <div id="json-reflections" class="reflections-container"></div>
+</section>
+
+
+    <!--  Third-Party API: YouTube Embed -->
     <section class="card">
       <h2>Helpful Tutorial</h2>
       <div id="youtube-video"></div>
     </section>
 
-    <!-- ✅ Week 4 Entry -->
+    <!--  Week 4 Entry -->
     <div class="journal-entry">
       <h3>Week 4 – APIs & Progressive Enhancement</h3>
       <p><strong>Topics Covered:</strong> Storage API, Notification API, Third-Party API (YouTube), Modular JavaScript, DOM Integration</p>
@@ -51,7 +63,7 @@
       <p>The Storage API makes the journal feel like a real app — entries persist even after closing the browser. Notifications give instant feedback, improving user experience. The YouTube embed adds multimedia learning value. Together, these APIs make the journal more interactive, dynamic, and user-friendly — exactly what a modern PWA should be.</p>
     </div>
 
-    <!-- ✅ Week 3 Entry (Unchanged) -->
+    <!--  Week 3 Entry (Unchanged) -->
     <div class="journal-entry">
       <h3>Week 3 - JavaScript & DOM Manipulation</h3>
       <p><strong>Topics Covered:</strong> HTML DOM Manipulation, Reusable Components, Event Handling, Theme Switching, Date Object.</p>
@@ -76,7 +88,7 @@
       </ul>
     </div>
 
-    <!-- ✅ Week 2 Entry (Unchanged) -->
+    <!--  Week 2 Entry (Unchanged) -->
     <div class="journal-entry">
       <h3>Week 2 - Frontend Fundamentals</h3> 
       <p><strong>Topics Covered:</strong> HTML5, CSS3, Mobile-First Design, Responsive Layouts</p>
@@ -92,7 +104,7 @@
       <p>The most challenging part was ensuring perfect cross-browser compatibility and dealing with GitHub's limitation of not allowing empty folders. I had to add placeholder files to maintain the folder structure in the repository.</p>
     </div>
 
-    <!-- ✅ Week 1 Entry (Unchanged) -->
+    <!--  Week 1 Entry (Unchanged) -->
     <div class="journal-entry">
       <h3>Week 1 - Introduction to PWA & Development Setup</h3>
       <p><strong>Topics Covered:</strong> PWA Basics, GitHub Setup, VS Code Integration, PythonAnywhere Deployment</p>
@@ -124,7 +136,7 @@
     <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
   </footer>
 
-  <!-- ✅ Modular JS files -->
+  <!--  Modular JS files -->
   <script src="js/script.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/browser.js"></script>
