@@ -13,35 +13,46 @@
     <button id="theme-toggle">Toggle Dark Mode</button>
 
     <section class="profile">
-      <div class="profile-img-placeholder"
-           style="width: 150px; height: 150px; background: #3498db; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
-        RT
-      </div>
+      <!-- Option 1: Using Flask static file -->
+      <img src="{{ url_for('static', filename='images/profile.png') }}"
+           alt="Rojin Thapa"
+           class="profile-image"
+           style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; display: block; border: 4px solid #3498db;">
+
       <h1>Rojin Thapa</h1>
-      <p>Computer Science Student</p>
+      <p>Computer Science Student & Full-Stack Developer</p>
     </section>
 
     <div class="card">
       <h2>About Me</h2>
-      <p>Hello! I'm a Computer Science student passionate about mobile development and web technologies.</p>
-      <p>This learning journal documents my progress through the Mobile Application Development unit and showcases my growing skills in frontend development and PWA creation.</p>
+      <p>Hello! I'm a Computer Science student passionate about mobile development, web technologies, and full-stack development.</p>
+      <p>This learning journal documents my progress through the Mobile Application Development unit and showcases my growing skills from frontend development to Flask backend integration.</p>
     </div>
 
     <div class="card">
       <h2>Skills</h2>
       <ul>
         <li>HTML5 & CSS3</li>
-        <li>JavaScript</li>
+        <li>JavaScript & DOM Manipulation</li>
+        <li>Python & Flask Backend Development</li>
+        <li>REST API Integration</li>
         <li>Responsive Web Design</li>
-        <li>Mobile-First Development</li>
-        <li>Progressive Web Apps</li>
+        <li>Progressive Web Apps (PWA)</li>
+        <li>Git & GitHub</li>
+        <li>PythonAnywhere Deployment</li>
       </ul>
+    </div>
+
+    <div class="card">
+      <h2>Current Focus</h2>
+      <p>Building full-stack applications with Flask backend and modern frontend technologies. Recently completed backend integration for this Learning Journal PWA.</p>
     </div>
 
     <div class="card">
       <h2>Contact</h2>
       <p>Email: 2318315@students.ucreative.ac.uk</p>
       <p>GitHub: <a href="https://github.com/rojinthapa" target="_blank">github.com/rojinthapa</a></p>
+      <p>Portfolio: <a href="https://thaparojin.pythonanywhere.com" target="_blank">Live Learning Journal</a></p>
     </div>
   </main>
 
