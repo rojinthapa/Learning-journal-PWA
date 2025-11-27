@@ -1,6 +1,5 @@
+// storage.js - LocalStorage handler (NO FORM HANDLING)
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('entry-form');
-  const input = document.getElementById('entry-text');
   const list = document.getElementById('entry-list');
 
   // Request permission on load if not already granted
@@ -10,16 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function notifyUser(message) {
-    console.log('Triggering notification:', message);
-    if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(message);
-    } else {
-      alert(message); // fallback if notifications are blocked
-    }
-  }
-
   function loadEntries() {
+    if (!list) return;
+
     const entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
     list.innerHTML = '';
     entries.forEach((entry, index) => {
@@ -33,21 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (text) {
-        const entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
-        entries.push(text);
-        localStorage.setItem('journalEntries', JSON.stringify(entries));
-        input.value = '';
-        loadEntries();
-        notifyUser('✅ Entry saved to journal!');
-      }
-    });
-  }
-
+  // Only handle delete clicks for localStorage entries
   if (list) {
     list.addEventListener('click', (e) => {
       if (e.target.classList.contains('delete-entry')) {
