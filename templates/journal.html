@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Journal - Journal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <main class="main-content">
+    <button id="theme-toggle">Toggle Dark Mode</button>
+
+    <h1>Learning Journal</h1>
+
+<!-- Updated Journal Entry Form -->
+<section class="card">
+  <h2>Write a Journal Entry</h2>
+  <form id="entry-form">
+    <input type="text" id="entry-name" placeholder="Your name" required><br><br>
+    <textarea id="entry-text" rows="5" placeholder="Write your journal entry..." required></textarea><br>
+    <button type="submit" class="project-link">Save Entry to Flask Backend</button>
+  </form>
+  <p id="form-status" style="margin-top: 1rem;"></p>
+</section>
+
+    <!-- JSON Reflections Section -->
+    <section class="card">
+      <h2>Python JSON Reflections</h2>
+      <div class="json-controls">
+        <button id="load-json" class="project-link">Load Reflections</button>
+        <button id="export-json" class="project-link">Export JSON</button>
+        <span id="reflection-count" style="margin-left: 1rem; font-weight: bold;"></span>
+      </div>
+      <div id="json-reflections" class="reflections-container"></div>
+    </section>
+
+    <!-- Third-Party API: YouTube Embed -->
+    <section class="card">
+      <h2>Helpful Tutorial</h2>
+      <div id="youtube-video"></div>
+    </section>
+
+    <!-- Week 6 Entry -->
+<div class="journal-entry">
+  <h3>Week 6 – Flask Backend & Frontend-Backend Integration</h3>
+  <p><strong>Topics Covered:</strong> Flask Web Framework, REST API Development, Frontend-Backend Communication, PythonAnywhere Deployment, JSON Data Persistence</p>
+
+  <h4>Journal Questions:</h4>
+
+  <p><strong>1. Why is the frontend–backend connection important?</strong></p>
+  <p>The frontend-backend connection is crucial because it separates concerns and enables scalable, secure applications. The frontend handles user interface and experience, while the backend manages data storage, business logic, and security. This separation allows for better maintainability - the frontend can be updated without affecting data, and the backend can be optimized without changing the user interface. It also enables multiple clients (web, mobile, desktop) to access the same data through a unified API.</p>
+
+  <p><strong>2. Which HTTP methods did you use in Flask, and why?</strong></p>
+  <p>I implemented two main HTTP methods in Flask with plans for more:
+    <ul>
+      <li><strong>GET /api/reflections</strong> - To retrieve all reflections for display</li>
+      <li><strong>POST /api/reflections</strong> - To create new reflections from form submissions</li>
+    </ul>
+    I focused on GET and POST first because they cover the essential functionality of reading and creating data, which meets the core requirements while establishing a solid foundation for future enhancements.
+  </p>
+
+  <p><strong>3. What is the difference between using Flask to store and load JSON data and reading JSON directly in the browser?</strong></p>
+  <p>The key differences are:
+    <ul>
+      <li><strong>Persistence:</strong> Flask stores data on the server permanently, while browser JSON reading is limited to client-side storage (localStorage) which clears with cache or across devices</li>
+      <li><strong>Accessibility:</strong> Flask-served JSON is accessible to all users from any device, while browser JSON is limited to the specific browser and device</li>
+      <li><strong>Security:</strong> Flask allows server-side validation and processing before storing data, while client-side JSON has no server validation</li>
+      <li><strong>Scalability:</strong> Flask can handle multiple users simultaneously, while client-side JSON is single-user only</li>
+      <li><strong>Deployment:</strong> Flask works on any hosting platform, while client-side JSON reading fails on static hosts like GitHub Pages</li>
+    </ul>
+  </p>
+
+  <p><strong>4. Did you face any difficulties when running your project on PythonAnywhere? How did you handle them?</strong></p>
+  <p>Yes, I faced several significant challenges with PythonAnywhere deployment:
+    <ul>
+      <li><strong>Frontend-Backend Connection Issue:</strong> The form submissions weren't saving to Flask. After extensive debugging, I discovered that my storage.js file was intercepting form submissions and saving to localStorage instead of sending to the Flask backend</li>
+      <li><strong>File Path Configuration:</strong> PythonAnywhere has different directory structures than local development. I solved this by using absolute paths with <code>os.path</code> functions</li>
+      <li><strong>JSON File Permissions:</strong> The reflections.json file needed proper write permissions in the production environment</li>
+      <li><strong>JavaScript Loading Order:</strong> Had to ensure json-handler.js loaded after the DOM was ready and before form submissions</li>
+    </ul>
+    I handled these through systematic debugging - using browser console logs, Flask print statements, and testing each component independently to isolate the issues.
+  </p>
+
+  <p><strong>5. What extra feature did you build into your PWA with Flask, and why did you add it?</strong></p>
+  <p>I built <strong>robust data export functionality</strong> as my main extra feature:
+    <ul>
+      <li><strong>JSON Export Button:</strong> Users can download all their reflections as a JSON file with one click</li>
+      <li><strong>Automatic Filestamping:</strong> Exported files include the date in the filename for organization</li>
+      <li><strong>Professional Error Handling:</strong> Comprehensive error messages and status updates for all API operations</li>
+      <li><strong>Real-time Reflection Counter:</strong> Dynamic counter showing the total number of entries</li>
+    </ul>
+    I added the export feature because <strong>data portability is crucial for journal applications</strong>. Users invest time in their reflections and should be able to backup, share, or migrate their data. The error handling ensures a professional user experience, and the counter provides immediate feedback about their journal's growth.
+  </p>
+
+  <h4>Technical Implementation Insights:</h4>
+  <p>The biggest breakthrough this week was <strong>solving the frontend-backend integration challenge</strong>. After struggling with why reflections weren't saving, I methodically debugged each layer: browser console → network requests → Flask routes → file operations. Discovering that storage.js was hijacking form submissions taught me the importance of <strong>understanding script execution order and event listener conflicts</strong>.</p>
+
+  <p>Successfully deploying to PythonAnywhere and seeing reflections persist across sessions transformed this from a school project into a <strong>real web application</strong>. The moment I could add a reflection, reload the page, and see it still there was incredibly satisfying - it demonstrated the power of server-side persistence versus client-side limitations.</p>
+</div>
+
+
+    <!-- Week 5 Entry -->
+    <div class="journal-entry">
+      <h3>Week 5 – Python & JSON Backend Data</h3>
+      <p><strong>Topics Covered:</strong> Python JSON manipulation, File-based storage, Fetch API, Data persistence</p>
+      <h4>Journal Questions:</h4>
+      <p><strong>How is storing data in a JSON file different from using browser storage?</strong></p>
+      <p>JSON file storage persists on the server/file system and can be easily shared, backed up, or processed by other applications. Browser storage (like localStorage) is client-side only and limited to the specific browser/device. JSON files are better for permanent records, while browser storage is ideal for temporary session data.</p>
+      <p><strong>How did you use Python to create or update your JSON file?</strong></p>
+      <p>I created a Python script (<code>save_entry.py</code>) that takes user input via the command line, adds a timestamp, and appends the reflection to a JSON array. The script uses <code>json.load()</code> to read existing data and <code>json.dump()</code> to write the updated array back to the file with proper formatting.</p>
+      <p><strong>What does your PWA show locally, and what will users see on GitHub? Are they the same? Why or why not?</strong></p>
+      <p>Locally, the PWA shows actual reflections loaded from the JSON file (if the Python script has been run). On GitHub Pages, users will see an "Unable to load" message because GitHub Pages serves static files only and cannot execute Python scripts or maintain file changes. They're different due to the static nature of GitHub Pages hosting.</p>
+      <p><strong>What extra feature did you add to your PWA using the JSON file, and why?</strong></p>
+      <p>I added an <strong>Export button</strong> that allows users to download their reflections as a JSON file for backup or sharing. I also included a <strong>reflection counter</strong> to show the total number of entries. These features enhance usability by providing data portability and quick insights into the collection size.</p>
+    </div>
+
+    <!-- Week 4 Entry -->
+    <div class="journal-entry">
+      <h3>Week 4 – APIs & Progressive Enhancement</h3>
+      <p><strong>Topics Covered:</strong> Storage API, Notification API, Third-Party API (YouTube), Modular JavaScript, DOM Integration</p>
+      <h4>Journal Questions:</h4>
+      <p><strong>Which Storage, Browser, and Third-Party APIs did you choose, and why?</strong></p>
+      <p>I chose <strong>localStorage</strong> to persist journal entries across sessions because it's simple and reliable for small text data. For the Browser API, I used the <strong>Notification API</strong> to alert users when a new entry is saved — it adds a nice interactive touch. As a Third-Party API, I embedded a <strong>YouTube tutorial</strong> dynamically using an iframe, allowing me to share helpful videos directly inside the journal.</p>
+      <p><strong>How did you integrate each API with DOM manipulation?</strong></p>
+      <p>I used <code>getElementById()</code> to target the form and textarea, then added a <code>submit</code> event listener. When submitted, the entry is saved to <code>localStorage</code> and displayed using <code>innerHTML</code>. The Notification API is triggered after saving, using <code>new Notification()</code>. The YouTube embed is injected into a container using <code>innerHTML</code> to keep the HTML clean and dynamic.</p>
+      <p><strong>What challenges did you encounter, and how did you solve them?</strong></p>
+      <p>Notification permissions were tricky — some browsers block them by default. I requested permission on page load and added fallback logic. Modularizing the JavaScript into four files required careful planning, which I solved by grouping related logic and loading scripts in order. I also wrapped all logic in <code>DOMContentLoaded</code> to ensure DOM elements were ready before attaching listeners.</p>
+      <p><strong>In what ways do these APIs improve your Learning Journal PWA?</strong></p>
+      <p>The Storage API makes the journal feel like a real app — entries persist even after closing the browser. Notifications give instant feedback, improving user experience. The YouTube embed adds multimedia learning value. Together, these APIs make the journal more interactive, dynamic, and user-friendly — exactly what a modern PWA should be.</p>
+    </div>
+
+    <!-- Week 3 Entry -->
+    <div class="journal-entry">
+      <h3>Week 3 - JavaScript & DOM Manipulation</h3>
+      <p><strong>Topics Covered:</strong> HTML DOM Manipulation, Reusable Components, Event Handling, Theme Switching, Date Object.</p>
+      <h4>Journal Questions:</h4>
+      <p><strong>Which DOM selection methods did you use, and why did you choose them?</strong></p>
+      <ul>
+        <li><strong>document.getElementById()</strong>: Used for targeting unique elements like <code>#nav-placeholder</code>, <code>#theme-toggle</code>, and <code>#live-date-time</code>.</li>
+        <li><strong>document.querySelectorAll('.nav-menu a')</strong>: Used for selecting multiple navigation links to apply the active CSS class.</li>
+      </ul>
+      <p><strong>What was the most challenging part about linking JavaScript with your HTML?</strong></p>
+      <p>Ensuring DOM elements were fully loaded before manipulation. Solved by placing scripts at the end of <code>&lt;body&gt;</code>.</p>
+      <p><strong>How did you test and debug your JavaScript code?</strong></p>
+      <ul>
+        <li><strong>Console</strong>: Used <code>console.log()</code> to verify outputs.</li>
+        <li><strong>Elements Tab</strong>: Checked injected HTML visually.</li>
+        <li><strong>Sources Tab</strong>: Used breakpoints to step through logic.</li>
+      </ul>
+    </div>
+
+    <!-- Week 2 Entry -->
+    <div class="journal-entry">
+      <h3>Week 2 - Frontend Fundamentals</h3>
+      <p><strong>Topics Covered:</strong> HTML5, CSS3, Mobile-First Design, Responsive Layouts</p>
+      <h4>Journal Questions:</h4>
+      <p><strong>How did you approach mobile-first design?</strong></p>
+      <p>Started with single-column layout for mobile, then added media queries for larger screens.</p>
+      <p><strong>What was the most useful HTML or CSS concept you applied this week?</strong></p>
+      <p>CSS Grid and Flexbox for responsive layouts.</p>
+      <p><strong>What part of HTML or CSS did you find most challenging?</strong></p>
+      <p>Cross-browser compatibility and GitHub’s empty folder limitation.</p>
+    </div>
+
+        <!-- Week 1 Entry -->
+    <div class="journal-entry">
+      <h3>Week 1 - Introduction to PWA & Development Setup</h3>
+      <p><strong>Topics Covered:</strong> PWA Basics, GitHub Setup, VS Code Integration, PythonAnywhere Deployment</p>
+
+      <h4>Tasks Completed:</h4>
+      <ul>
+        <li>Created GitHub account and TemperatureConverterPWA repository</li>
+        <li>Set up VS Code with GitHub integration</li>
+        <li>Built a Temperature Converter PWA with manifest and service worker</li>
+        <li>Deployed the PWA on GitHub Pages and PythonAnywhere</li>
+        <li>Explored Android Studio and Kotlin for mobile development</li>
+      </ul>
+
+      <h4>Challenges Faced:</h4>
+      <p><strong>GitHub Empty Folders:</strong> GitHub doesn't allow empty folders, so I had to add placeholder files (.gitkeep) to maintain the project structure.</p>
+      <p><strong>Mobile-PC Compatibility:</strong> Adjusting the PWA to work seamlessly across different devices was challenging. I had to test extensively on various screen sizes and use responsive design principles.</p>
+      <p><strong>Service Worker Setup:</strong> Getting the service worker to properly cache resources for offline functionality required careful path configuration and testing.</p>
+
+      <h4>Reflection:</h4>
+      <p>This week provided a comprehensive introduction to the mobile development ecosystem. Setting up the development environment across multiple platforms (GitHub, VS Code, PythonAnywhere, Android Studio) was initially overwhelming but ultimately rewarding. The PWA approach is particularly interesting as it bridges web and mobile development.</p>
+      <p>The most valuable lesson was understanding how different deployment platforms serve different purposes - GitHub Pages for static hosting, PythonAnywhere for backend services, and Android Studio for native mobile apps.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
+  </footer>
+
+  <!-- Modular JS files -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/storage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/browser.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/thirdparty.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/json-handler.js') }}"></script>
+</body>
+</html>
