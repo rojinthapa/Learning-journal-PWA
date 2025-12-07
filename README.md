@@ -54,12 +54,18 @@ Learning-journal-PWA/
 │       └── reflections.json # Data storage (auto-created)
 
 ```
-🎯 How to Use
-Visit the Site: Open the link in your browser.
-Install App: Look for the "Install" icon in your URL bar or "Add to Home Screen" in browser options.
-Write Entry: Go to the Journal page and save a reflection (saves to Flask backend).
-Go Offline: Turn off your internet—the app will still load, and you can read your saved entries!
-Export Data: Download your reflections as a JSON file.
+## 🎯 How to Use
+
+1. **Visit the Site** Open the link in your browser.
+
+2. **Install App** Look for the "Install" icon in your URL bar or select "Add to Home Screen" in your browser options.
+
+3. **Write Entry** Go to the Journal page and save a reflection (this saves directly to the Flask backend).
+
+4. **Go Offline** Turn off your internet—the app will still load, and you can read your saved entries!
+
+5. **Export Data** Download your reflections as a JSON file for backup.
+
 
 # 1. Clone the repository
 git clone [https://github.com/rojinthapa/Learning-journal-PWA](https://github.com/rojinthapa/Learning-journal-PWA)
