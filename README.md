@@ -1,6 +1,6 @@
 # Learning Journal PWA
 
-A Progressive Web App that documents my Mobile Application Development learning journey, built with Flask backend and modern web technologies.
+A Progressive Web App that documents my Mobile Application Development learning journey, built with Flask backend and modern web technologies. Now fully installable with offline capabilities!
 
 ## 🚀 Live Demo
 
@@ -8,7 +8,7 @@ A Progressive Web App that documents my Mobile Application Development learning 
 
 ## 📖 About This Project
 
-This is my learning journal and portfolio for the FGCT6021 Mobile Application Development unit. It started as a simple frontend project and evolved into a full-stack application with Flask backend.
+This is my learning journal and portfolio for the FGCT6021 Mobile Application Development unit. It has evolved from a simple static site into a full-stack Progressive Web App (PWA) with offline support.
 
 ### ✨ Features
 
@@ -16,53 +16,53 @@ This is my learning journal and portfolio for the FGCT6021 Mobile Application De
 - **🎨 Beautiful UI** - Responsive design with dark/light theme
 - **🔗 Flask Backend** - Full-stack functionality with API routes
 - **💾 Data Persistence** - Reflections saved to JSON file on server
-- **📱 PWA Ready** - Works offline and can be installed as app
-- **📤 Export Data** - Download reflections as JSON files
+- **📱 Fully Installable** - Add to Home Screen via Web Manifest
+- **📡 Offline Support** - Works without internet using Service Workers
+- **⚡ Smart Caching** - "Network First" strategy for dynamic content
 
 ## 🛠️ Technology Stack
 
 - **Frontend:** HTML5, CSS3, JavaScript
+- **PWA:** Service Workers, Cache API, Web Manifest
 - **Backend:** Python, Flask
 - **Deployment:** PythonAnywhere
 - **Storage:** JSON file database
-- **Features:** REST API, Responsive Design, PWA
 
 ## 📁 Project Structure
-```
 
+```text
 Learning-journal-PWA/
-├──flask_app.py          # Main Flask application
-├──templates/            # HTML pages
-│├── index.html        # Home page
-│├── journal.html      # Journal with Flask form
-│├── projects.html     # Project portfolio
-│└── about.html        # About me page
-├──static/
-│├── css/style.css     # All styling
-│├── js/
-││   ├── script.js     # Navigation & theme
-││   ├── storage.js    # localStorage functions
-││   └── json-handler.js # Flask API communication
-│└── images/           # Profile & assets
-└──reflections.json      # Data storage (auto-created)
+├── flask_app.py            # Main Flask application
+├── templates/              # HTML pages
+│   ├── index.html          # Home page
+│   ├── journal.html        # Journal with Flask form
+│   ├── projects.html       # Project portfolio
+│   └── about.html          # About me page
+├── static/
+│   ├── manifest.json       # PWA Install Manifest
+│   ├── css/
+│   │   └── style.css       # All styling
+│   ├── js/
+│   │   ├── sw.js           # Service Worker (Offline Logic)
+│   │   ├── script.js       # Navigation, Theme, PWA Register
+│   │   ├── json-handler.js # Flask API communication
+│   │   ├── storage.js      # localStorage functions
+│   │   ├── browser.js      # Browser API features
+│   │   └── thirdparty.js   # YouTube API integration
+│   ├── images/             # Icons & Assets
+│   └── backend/
+│       └── reflections.json # Data storage (auto-created)
 
 ```
+🎯 How to Use
+Visit the Site: Open the link in your browser.
+Install App: Look for the "Install" icon in your URL bar or "Add to Home Screen" in browser options.
+Write Entry: Go to the Journal page and save a reflection (saves to Flask backend).
+Go Offline: Turn off your internet—the app will still load, and you can read your saved entries!
+Export Data: Download your reflections as a JSON file.
 
-## 🎯 How to Use
-
-1. **Visit the Journal page**
-2. **Fill out the form** with your name and reflection
-3. **Click "Save Entry"** - it will save to Flask backend
-4. **View all reflections** dynamically loaded from server
-5. **Export data** using the "Export JSON" button
-
-## 🔧 Development
-
-### Local Setup (if you want to run it):
-
-```bash
 # 1. Clone the repository
-git clone https://github.com/rojinthapa/Learning-journal-PWA
+git clone [https://github.com/rojinthapa/Learning-journal-PWA](https://github.com/rojinthapa/Learning-journal-PWA)
 
 # 2. Install dependencies
 pip install flask
@@ -72,4 +72,3 @@ python flask_app.py
 
 # 4. Open browser
 http://localhost:5000
-```
