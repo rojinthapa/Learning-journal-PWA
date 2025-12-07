@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learning Journal - Journal</title>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
@@ -41,6 +42,31 @@
       <h2>Helpful Tutorial</h2>
       <div id="youtube-video"></div>
     </section>
+
+        <div class="journal-entry">
+      <h3>Week 7 – Progressive Web Apps (PWA)</h3>
+      <p><strong>Topics Covered:</strong> Web Manifest, Service Workers, Caching Strategies, Offline Capability, Installability</p>
+
+      <h4>Journal Questions:</h4>
+
+      <p><strong>1. Why is it useful to enhance your Flask app with PWA features?</strong></p>
+      <p>Enhancing the Flask app with PWA features transforms it from a simple website into a native-like application. It allows the app to be installed on a user's home screen, improving accessibility. Most importantly, it ensures reliability; users can still access the app and view content even with poor or no internet connection, which significantly improves the user experience compared to a standard web page that would just crash.</p>
+
+      <p><strong>2. What did you use to support offline access and dynamic data?</strong></p>
+      <p>To support offline access, I implemented a Service Worker (sw.js) that acts as a network proxy. I used two distinct caching strategies:
+        <ul>
+          <li>Cache First: For static assets like CSS, JavaScript, and images, ensuring the UI loads instantly without network requests.</li>
+          <li>Network First: For dynamic data (HTML pages and the JSON API). The app tries to fetch the latest reflections from the Flask backend first; if that fails, it falls back to the cached version, ensuring users see the most up-to-date content possible while still having offline backup.</li>
+        </ul>
+      </p>
+
+      <p><strong>3. What extra feature did you add, and why?</strong></p>
+      <p>I added a Real-time Offline Detection System. Using the window's online and offline events, the app automatically displays a warning banner when the internet connection is lost. I added this because it manages user expectations—it prevents the frustration of trying to submit a journal entry when there is no connection to the server.</p>
+
+      <p><strong>4. Did you face any challenges deploying your PWA, and how did you solve them?</strong></p>
+      <p>The main challenge was the Service Worker Scope. My sw.js file is located in the static/js/ folder, which normally means it can only control files in that specific folder. To fix this, I had to create a special route in Flask that serves the file from the root URL (/sw.js) and adds the HTTP header Service-Worker-Allowed: /. This allowed the Service Worker to control the entire application including the root HTML pages.</p>
+    </div>
+
 
     <!-- Week 6 Entry -->
 <div class="journal-entry">
