@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory, make_response
 import json, os
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Keep your existing file path - reflections.json in static/backend/
+# Base directory setup
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(BASE_DIR, "static", "backend", "reflections.json")
 
@@ -21,15 +21,31 @@ def load_reflections():
 
 def save_reflections(reflections):
     try:
-        # Create directory if it doesn't exist
         os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
         with open(DATA_FILE, "w") as f:
             json.dump(reflections, f, indent=4)
-        print(f"Successfully saved {len(reflections)} reflections to {DATA_FILE}")
+        print(f"Successfully saved {len(reflections)} reflections")
     except Exception as e:
         print(f"Error saving reflections: {e}")
 
-# --- Routes for HTML pages ---
+# --- PWA SPECIFIC ROUTES (LAB 7) ---
+
+@app.route('/manifest.json')
+def manifest():
+    # Serves the manifest from the static folder
+    return send_from_directory('static', 'manifest.json')
+
+@app.route('/sw.js')
+def service_worker():
+    # SERVES SW.JS FROM static/js/ BUT AS A ROOT URL
+    # This is critical for the Service Worker scope to include the whole app
+    response = make_response(send_from_directory('static/js', 'sw.js'))
+    # Ensure browsers allow it to control the root scope
+    response.headers['Service-Worker-Allowed'] = '/'
+    return response
+
+# --- STANDARD PAGE ROUTES ---
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -46,41 +62,35 @@ def about():
 def projects():
     return render_template("projects.html")
 
-# --- API routes for reflections ---
+# --- API ROUTES ---
+
 @app.route("/api/reflections", methods=["GET"])
 def get_reflections():
     reflections = load_reflections()
-    print(f"Returning {len(reflections)} reflections")  # Debug
     return jsonify(reflections)
 
 @app.route("/api/reflections", methods=["POST"])
 def add_reflection():
     try:
         data = request.get_json()
-        print(f"📨 Received POST data: {data}")  # Debug log
-
-        # Handle both 'reflection' and 'text' fields for compatibility
         reflection_text = data.get("reflection") or data.get("text", "")
 
         new_reflection = {
             "name": data.get("name", "Anonymous"),
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "reflection": reflection_text,
-            "text": reflection_text  # Include both for compatibility
+            "text": reflection_text
         }
 
         reflections = load_reflections()
         reflections.append(new_reflection)
         save_reflections(reflections)
 
-        print(f"✅ Saved new reflection: {new_reflection}")  # Debug log
         return jsonify(new_reflection), 201
 
     except Exception as e:
-        print(f"❌ Error in add_reflection: {e}")
         return jsonify({"error": str(e)}), 500
 
-# --- Extra feature: Delete reflection ---
 @app.route("/api/reflections/<int:index>", methods=["DELETE"])
 def delete_reflection(index):
     try:
@@ -91,39 +101,8 @@ def delete_reflection(index):
             return jsonify({"deleted": deleted}), 200
         return jsonify({"error": "Invalid index"}), 404
     except Exception as e:
-        print(f"Error deleting reflection: {e}")
         return jsonify({"error": str(e)}), 500
-
-# --- Extra feature: Edit reflection ---
-@app.route("/api/reflections/<int:index>", methods=["PUT"])
-def edit_reflection(index):
-    try:
-        reflections = load_reflections()
-        if 0 <= index < len(reflections):
-            data = request.get_json()
-            reflection_text = data.get("reflection") or data.get("text", "")
-
-            reflections[index]["reflection"] = reflection_text
-            reflections[index]["text"] = reflection_text  # Update both
-            reflections[index]["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-            save_reflections(reflections)
-            return jsonify(reflections[index]), 200
-        return jsonify({"error": "Invalid index"}), 404
-    except Exception as e:
-        print(f"Error editing reflection: {e}")
-        return jsonify({"error": str(e)}), 500
-
-# --- Debug route to check file status ---
-@app.route("/api/debug")
-def debug():
-    return jsonify({
-        "data_file_path": DATA_FILE,
-        "file_exists": os.path.exists(DATA_FILE),
-        "file_directory_exists": os.path.exists(os.path.dirname(DATA_FILE)),
-        "current_reflections_count": len(load_reflections()),
-        "current_reflections": load_reflections()
-    })
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
