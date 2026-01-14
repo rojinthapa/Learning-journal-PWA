@@ -1,19 +1,14 @@
-// js/script.js - UPDATED FOR LAB 7 PWA
-// Includes: Navigation, Theme Toggle, Live Date, Service Worker, and Offline Detection
+// js/script.js - UPDATED FOR LAB 7 PWA + GAME
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log(' Initializing Learning Journal PWA...');
-
-    // ==========================================
-    // 1. Navigation Logic (Flask Compatible)
-    // ==========================================
     const navHTML = `
         <nav class="navbar">
             <ul class="nav-menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/journal">Journal</a></li>
                 <li><a href="/projects">Projects</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/game">Game</a></li> <li><a href="/about">About</a></li>
             </ul>
         </nav>
     `;
@@ -87,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 4. LAB 7 EXTRA FEATURE: Offline Detection
+    // 4. Offline Detection (Red/Green Banner)
     // ==========================================
     // This satisfies "Notifying users when they are offline" requirement
 
@@ -147,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// 5. LAB 7: Service Worker Registration
+// 5. Service Worker Registration
 // ==========================================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
