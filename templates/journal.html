@@ -15,18 +15,16 @@
 
     <h1>Learning Journal</h1>
 
-<!-- Updated Journal Entry Form -->
-<section class="card">
-  <h2>Write a Journal Entry</h2>
-  <form id="entry-form">
-    <input type="text" id="entry-name" placeholder="Your name" required><br><br>
-    <textarea id="entry-text" rows="5" placeholder="Write your journal entry..." required></textarea><br>
-    <button type="submit" class="project-link">Save Entry to Flask Backend</button>
-  </form>
-  <p id="form-status" style="margin-top: 1rem;"></p>
-</section>
+    <section class="card">
+      <h2>Write a Journal Entry</h2>
+      <form id="entry-form">
+        <input type="text" id="entry-name" placeholder="Your name" required><br><br>
+        <textarea id="entry-text" rows="5" placeholder="Write your journal entry..." required></textarea><br>
+        <button type="submit" class="project-link">Save Entry to Flask Backend</button>
+      </form>
+      <p id="form-status" style="margin-top: 1rem;"></p>
+    </section>
 
-    <!-- JSON Reflections Section -->
     <section class="card">
       <h2>Python JSON Reflections</h2>
       <div class="json-controls">
@@ -37,14 +35,39 @@
       <div id="json-reflections" class="reflections-container"></div>
     </section>
 
-    <!-- Third-Party API: YouTube Embed -->
     <section class="card">
       <h2>Helpful Tutorial</h2>
       <div id="youtube-video"></div>
     </section>
 
-        <div class="journal-entry">
+    <div class="journal-entry">
+      <h3>Mini Project – Cyber Defender Game & Full UI Overhaul</h3>
+      <p><strong>Topics Covered:</strong> HTML5 Canvas API, Advanced Event Listeners (Touch vs. Mouse), Service Worker Cache Invalidation, CSS Grid/Flexbox Layouts, LocalStorage Persistence.</p>
+
+      <h4>9.1 What additional features did you add to your Learning Journal?</h4>
+      <p>For my mini-project, I transformed the Learning Journal from a standard documentation site into an interactive, app-like experience by implementing three major features. First, I developed "Cyber Defender," a retro-style arcade space shooter built entirely with the HTML5 Canvas API. Unlike simple DOM manipulation, this required writing a complete game engine loop in JavaScript (`requestAnimationFrame`) to handle real-time rendering, collision detection between arrays of objects (bullets vs. enemies), and a particle system for explosion effects. </p>
+
+      <p>Second, I built a "Hybrid Control System" to ensure true cross-platform compatibility. This system simultaneously listens for keyboard inputs (Arrow Keys) for desktop users and Touch Events (`touchstart`, `touchmove`) for mobile users. I implemented a custom on-screen "Mega Console" controller with large tap targets and swipe-based navigation to mimic native mobile app behavior. Finally, I completely overhauled the homepage UI to function as a modern application dashboard. I replaced the standard text links with a CSS Grid layout of "Quick Access" cards and a "Hero" section with gradient styling. This included integrating a "Force Load" styling strategy where critical CSS was embedded directly into the HTML head to prevent initial render flashes.</p>
+
+      <h4>9.2 Why did you choose your mini project idea?</h4>
+      <p>I chose to build an arcade game and redesign the UI because I wanted to challenge the perception of what a "Learning Journal" could be. Most portfolios are static, text-heavy sites that function like digital brochures. By integrating a real-time action game, I demonstrated that a Progressive Web App (PWA) can deliver immersive, complex interactivity that rivals native mobile applications. This idea was chosen specifically to test the limits of the browser's performance and offline capabilities. </p>
+
+      <p>Furthermore, the "Cyber Defender" game served as a practical playground to apply advanced JavaScript concepts that I had only read about, such as object-oriented programming for game entities and the math required for collision logic. The UI overhaul was chosen to address a critical flaw in the previous design: it wasn't truly "mobile-first." By redesigning the homepage with large touch targets and a dashboard layout, I wanted to prioritize the User Experience (UX) for mobile users—who make up the primary audience for PWAs. This project allowed me to combine creative design with complex backend logic, providing a comprehensive demonstration of my full-stack development skills.</p>
+
+      <h4>9.3 What technical challenges did you face and how did you solve them?</h4>
+      <p>The most significant technical challenge was fighting the Service Worker's aggressive caching. Because a PWA is designed to work offline, my Service Worker (`sw.js`) would stubbornly serve old versions of my CSS and JavaScript files even after I had deployed new code. This resulted in a "broken" UI where the new game HTML would load, but without the necessary styling or logic. I solved this by implementing a strict cache versioning strategy. I manually incremented the `CACHE_NAME` variable (e.g., from v9 to v10) in the Service Worker file, which forced the browser to treat the files as new and trigger a fresh download. For critical styles, I also utilized a "cache-busting" technique by appending query strings (e.g., `style.css?v=2`) to my file imports.</p>
+
+      <p>Another major challenge was handling mobile touch inputs. Initially, trying to play the game on a phone was frustrating because dragging a finger across the screen would scroll the web page instead of moving the spaceship. Additionally, rapid tapping on the fire button would accidentally zoom in the viewport. I solved this by using the `preventDefault()` method on touch event listeners to disable the browser's default scrolling behavior within the game canvas. I also applied the CSS property `touch-action: none` to the control buttons, which effectively locked the viewport and allowed for responsive, lag-free gameplay controls.</p>
+
+      <h4>9.4 What would you improve if given more time?</h4>
+      <p>If I had more time, I would significantly enhance the backend integration of the game. Currently, the high score is saved to the browser's `localStorage`. While this fulfills the requirement for persistent data, it is isolated to that specific device. I would improve this by creating a new Flask API endpoint (e.g., `POST /api/leaderboard`) that writes high scores to a server-side JSON file or database. This would allow for a "Global Leaderboard" where users could see how they rank against other players, adding a competitive social element to the application.</p>
+
+      <p>Additionally, I would implement the Web Audio API to add sound effects and background music. Sound is a crucial part of game feedback, but handling audio in browsers is tricky due to "autoplay" restrictions. I would build a settings menu that allows users to toggle sound on or off, ensuring compliance with browser policies while enhancing immersion. Finally, I would refine the PWA installation experience by adding a custom "Install Prompt" button that appears if the app isn't already installed, guiding users to add the journal to their home screen rather than relying on the default browser menu.</p>
+    </div>
+
+    <div class="journal-entry">
       <h3>Week 7 – Progressive Web Apps (PWA)</h3>
+      <p>Transformed the Learning Journal into a fully installable Progressive Web App with offline capabilities using Service Workers and the Cache API.</p>
       <p><strong>Topics Covered:</strong> Web Manifest, Service Workers, Caching Strategies, Offline Capability, Installability</p>
 
       <h4>Journal Questions:</h4>
@@ -67,67 +90,58 @@
       <p>The main challenge was the Service Worker Scope. My sw.js file is located in the static/js/ folder, which normally means it can only control files in that specific folder. To fix this, I had to create a special route in Flask that serves the file from the root URL (/sw.js) and adds the HTTP header Service-Worker-Allowed: /. This allowed the Service Worker to control the entire application including the root HTML pages.</p>
     </div>
 
+    <div class="journal-entry">
+      <h3>Week 6 – Flask Backend & Frontend-Backend Integration</h3>
+      <p><strong>Topics Covered:</strong> Flask Web Framework, REST API Development, Frontend-Backend Communication, PythonAnywhere Deployment, JSON Data Persistence</p>
 
-    <!-- Week 6 Entry -->
-<div class="journal-entry">
-  <h3>Week 6 – Flask Backend & Frontend-Backend Integration</h3>
-  <p><strong>Topics Covered:</strong> Flask Web Framework, REST API Development, Frontend-Backend Communication, PythonAnywhere Deployment, JSON Data Persistence</p>
+      <h4>Journal Questions:</h4>
 
-  <h4>Journal Questions:</h4>
+      <p><strong>1. Why is the frontend–backend connection important?</strong></p>
+      <p>The frontend-backend connection is crucial because it separates concerns and enables scalable, secure applications. The frontend handles user interface and experience, while the backend manages data storage, business logic, and security. This separation allows for better maintainability - the frontend can be updated without affecting data, and the backend can be optimized without changing the user interface. It also enables multiple clients (web, mobile, desktop) to access the same data through a unified API.</p>
 
-  <p><strong>1. Why is the frontend–backend connection important?</strong></p>
-  <p>The frontend-backend connection is crucial because it separates concerns and enables scalable, secure applications. The frontend handles user interface and experience, while the backend manages data storage, business logic, and security. This separation allows for better maintainability - the frontend can be updated without affecting data, and the backend can be optimized without changing the user interface. It also enables multiple clients (web, mobile, desktop) to access the same data through a unified API.</p>
+      <p><strong>2. Which HTTP methods did you use in Flask, and why?</strong></p>
+      <p>I implemented two main HTTP methods in Flask with plans for more:
+        <ul>
+          <li><strong>GET /api/reflections</strong> - To retrieve all reflections for display</li>
+          <li><strong>POST /api/reflections</strong> - To create new reflections from form submissions</li>
+        </ul>
+        I focused on GET and POST first because they cover the essential functionality of reading and creating data, which meets the core requirements while establishing a solid foundation for future enhancements.
+      </p>
 
-  <p><strong>2. Which HTTP methods did you use in Flask, and why?</strong></p>
-  <p>I implemented two main HTTP methods in Flask with plans for more:
-    <ul>
-      <li><strong>GET /api/reflections</strong> - To retrieve all reflections for display</li>
-      <li><strong>POST /api/reflections</strong> - To create new reflections from form submissions</li>
-    </ul>
-    I focused on GET and POST first because they cover the essential functionality of reading and creating data, which meets the core requirements while establishing a solid foundation for future enhancements.
-  </p>
+      <p><strong>3. What is the difference between using Flask to store and load JSON data and reading JSON directly in the browser?</strong></p>
+      <p>The key differences are:
+        <ul>
+          <li><strong>Persistence:</strong> Flask stores data on the server permanently, while browser JSON reading is limited to client-side storage (localStorage) which clears with cache or across devices</li>
+          <li><strong>Accessibility:</strong> Flask-served JSON is accessible to all users from any device, while browser JSON is limited to the specific browser and device</li>
+          <li><strong>Security:</strong> Flask allows server-side validation and processing before storing data, while client-side JSON has no server validation</li>
+          <li><strong>Scalability:</strong> Flask can handle multiple users simultaneously, while client-side JSON is single-user only</li>
+          <li><strong>Deployment:</strong> Flask works on any hosting platform, while client-side JSON reading fails on static hosts like GitHub Pages</li>
+        </ul>
+      </p>
 
-  <p><strong>3. What is the difference between using Flask to store and load JSON data and reading JSON directly in the browser?</strong></p>
-  <p>The key differences are:
-    <ul>
-      <li><strong>Persistence:</strong> Flask stores data on the server permanently, while browser JSON reading is limited to client-side storage (localStorage) which clears with cache or across devices</li>
-      <li><strong>Accessibility:</strong> Flask-served JSON is accessible to all users from any device, while browser JSON is limited to the specific browser and device</li>
-      <li><strong>Security:</strong> Flask allows server-side validation and processing before storing data, while client-side JSON has no server validation</li>
-      <li><strong>Scalability:</strong> Flask can handle multiple users simultaneously, while client-side JSON is single-user only</li>
-      <li><strong>Deployment:</strong> Flask works on any hosting platform, while client-side JSON reading fails on static hosts like GitHub Pages</li>
-    </ul>
-  </p>
+      <p><strong>4. Did you face any difficulties when running your project on PythonAnywhere? How did you handle them?</strong></p>
+      <p>Yes, I faced several significant challenges with PythonAnywhere deployment:
+        <ul>
+          <li><strong>Frontend-Backend Connection Issue:</strong> The form submissions weren't saving to Flask. After extensive debugging, I discovered that my storage.js file was intercepting form submissions and saving to localStorage instead of sending to the Flask backend</li>
+          <li><strong>File Path Configuration:</strong> PythonAnywhere has different directory structures than local development. I solved this by using absolute paths with <code>os.path</code> functions</li>
+          <li><strong>JSON File Permissions:</strong> The reflections.json file needed proper write permissions in the production environment</li>
+          <li><strong>JavaScript Loading Order:</strong> Had to ensure json-handler.js loaded after the DOM was ready and before form submissions</li>
+        </ul>
+        I handled these through systematic debugging - using browser console logs, Flask print statements, and testing each component independently to isolate the issues.
+      </p>
 
-  <p><strong>4. Did you face any difficulties when running your project on PythonAnywhere? How did you handle them?</strong></p>
-  <p>Yes, I faced several significant challenges with PythonAnywhere deployment:
-    <ul>
-      <li><strong>Frontend-Backend Connection Issue:</strong> The form submissions weren't saving to Flask. After extensive debugging, I discovered that my storage.js file was intercepting form submissions and saving to localStorage instead of sending to the Flask backend</li>
-      <li><strong>File Path Configuration:</strong> PythonAnywhere has different directory structures than local development. I solved this by using absolute paths with <code>os.path</code> functions</li>
-      <li><strong>JSON File Permissions:</strong> The reflections.json file needed proper write permissions in the production environment</li>
-      <li><strong>JavaScript Loading Order:</strong> Had to ensure json-handler.js loaded after the DOM was ready and before form submissions</li>
-    </ul>
-    I handled these through systematic debugging - using browser console logs, Flask print statements, and testing each component independently to isolate the issues.
-  </p>
+      <p><strong>5. What extra feature did you build into your PWA with Flask, and why did you add it?</strong></p>
+      <p>I built <strong>robust data export functionality</strong> as my main extra feature:
+        <ul>
+          <li><strong>JSON Export Button:</strong> Users can download all their reflections as a JSON file with one click</li>
+          <li><strong>Automatic Filestamping:</strong> Exported files include the date in the filename for organization</li>
+          <li><strong>Professional Error Handling:</strong> Comprehensive error messages and status updates for all API operations</li>
+          <li><strong>Real-time Reflection Counter:</strong> Dynamic counter showing the total number of entries</li>
+        </ul>
+        I added the export feature because <strong>data portability is crucial for journal applications</strong>. Users invest time in their reflections and should be able to backup, share, or migrate their data. The error handling ensures a professional user experience, and the counter provides immediate feedback about their journal's growth.
+      </p>
+    </div>
 
-  <p><strong>5. What extra feature did you build into your PWA with Flask, and why did you add it?</strong></p>
-  <p>I built <strong>robust data export functionality</strong> as my main extra feature:
-    <ul>
-      <li><strong>JSON Export Button:</strong> Users can download all their reflections as a JSON file with one click</li>
-      <li><strong>Automatic Filestamping:</strong> Exported files include the date in the filename for organization</li>
-      <li><strong>Professional Error Handling:</strong> Comprehensive error messages and status updates for all API operations</li>
-      <li><strong>Real-time Reflection Counter:</strong> Dynamic counter showing the total number of entries</li>
-    </ul>
-    I added the export feature because <strong>data portability is crucial for journal applications</strong>. Users invest time in their reflections and should be able to backup, share, or migrate their data. The error handling ensures a professional user experience, and the counter provides immediate feedback about their journal's growth.
-  </p>
-
-  <h4>Technical Implementation Insights:</h4>
-  <p>The biggest breakthrough this week was <strong>solving the frontend-backend integration challenge</strong>. After struggling with why reflections weren't saving, I methodically debugged each layer: browser console → network requests → Flask routes → file operations. Discovering that storage.js was hijacking form submissions taught me the importance of <strong>understanding script execution order and event listener conflicts</strong>.</p>
-
-  <p>Successfully deploying to PythonAnywhere and seeing reflections persist across sessions transformed this from a school project into a <strong>real web application</strong>. The moment I could add a reflection, reload the page, and see it still there was incredibly satisfying - it demonstrated the power of server-side persistence versus client-side limitations.</p>
-</div>
-
-
-    <!-- Week 5 Entry -->
     <div class="journal-entry">
       <h3>Week 5 – Python & JSON Backend Data</h3>
       <p><strong>Topics Covered:</strong> Python JSON manipulation, File-based storage, Fetch API, Data persistence</p>
@@ -142,7 +156,6 @@
       <p>I added an <strong>Export button</strong> that allows users to download their reflections as a JSON file for backup or sharing. I also included a <strong>reflection counter</strong> to show the total number of entries. These features enhance usability by providing data portability and quick insights into the collection size.</p>
     </div>
 
-    <!-- Week 4 Entry -->
     <div class="journal-entry">
       <h3>Week 4 – APIs & Progressive Enhancement</h3>
       <p><strong>Topics Covered:</strong> Storage API, Notification API, Third-Party API (YouTube), Modular JavaScript, DOM Integration</p>
@@ -157,7 +170,6 @@
       <p>The Storage API makes the journal feel like a real app — entries persist even after closing the browser. Notifications give instant feedback, improving user experience. The YouTube embed adds multimedia learning value. Together, these APIs make the journal more interactive, dynamic, and user-friendly — exactly what a modern PWA should be.</p>
     </div>
 
-    <!-- Week 3 Entry -->
     <div class="journal-entry">
       <h3>Week 3 - JavaScript & DOM Manipulation</h3>
       <p><strong>Topics Covered:</strong> HTML DOM Manipulation, Reusable Components, Event Handling, Theme Switching, Date Object.</p>
@@ -177,7 +189,6 @@
       </ul>
     </div>
 
-    <!-- Week 2 Entry -->
     <div class="journal-entry">
       <h3>Week 2 - Frontend Fundamentals</h3>
       <p><strong>Topics Covered:</strong> HTML5, CSS3, Mobile-First Design, Responsive Layouts</p>
@@ -190,7 +201,6 @@
       <p>Cross-browser compatibility and GitHub’s empty folder limitation.</p>
     </div>
 
-        <!-- Week 1 Entry -->
     <div class="journal-entry">
       <h3>Week 1 - Introduction to PWA & Development Setup</h3>
       <p><strong>Topics Covered:</strong> PWA Basics, GitHub Setup, VS Code Integration, PythonAnywhere Deployment</p>
@@ -219,7 +229,6 @@
     <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
   </footer>
 
-  <!-- Modular JS files -->
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   <script src="{{ url_for('static', filename='js/storage.js') }}"></script>
   <script src="{{ url_for('static', filename='js/browser.js') }}"></script>
@@ -227,3 +236,5 @@
   <script src="{{ url_for('static', filename='js/json-handler.js') }}"></script>
 </body>
 </html>
+
+
