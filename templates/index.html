@@ -13,25 +13,51 @@
   <main class="main-content">
     <button id="theme-toggle">Toggle Dark Mode</button>
 
-    <section class="hero">
-      <h1>Welcome to My Learning Journal</h1>
-      <p id="live-date-time"></p>
-      <p>Documenting my journey through Mobile Application Development</p>
+    <section class="hero-modern">
+      <h1>Learning Journal</h1>
+      <p>Mobile Application Development Portfolio</p>
+      <div class="date-badge" id="live-date-time">Loading date...</div>
     </section>
 
-    <div class="card">
-      <h2>About This Site</h2>
-      <p>This Progressive Web App serves as my learning log, personal website, and portfolio for the FGCT6021 Mobile Application Development unit.</p>
-      <p>Here you'll find my weekly journal entries, projects I'm working on, and information about my background and skills.</p>
+    <section>
+        <h2 style="margin-bottom: 1rem; padding-left: 0.5rem; border-left: 4px solid #3498db;">Quick Access</h2>
+        <div class="dashboard-grid">
+            <a href="/journal" class="dash-card">
+                <span class="dash-icon">📝</span>
+                <span class="dash-title">Write Entry</span>
+            </a>
+
+            <a href="/projects" class="dash-card">
+                <span class="dash-icon">💻</span>
+                <span class="dash-title">Projects</span>
+            </a>
+
+            <a href="/about" class="dash-card">
+                <span class="dash-icon">👨‍💻</span>
+                <span class="dash-title">Profile</span>
+            </a>
+
+            <a href="https://github.com/rojinthapa" target="_blank" class="dash-card">
+                <span class="dash-icon">🔗</span>
+                <span class="dash-title">GitHub</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="card featured-card" onclick="window.location.href='/game'">
+        <div class="featured-content">
+            <h3>🎮 Play Cyber Defender</h3>
+            <p>New high-score feature & mobile controls added!</p>
+        </div>
+        <div class="play-btn">PLAY ▶</div>
     </div>
 
-   <div class="card">
-      <h2>Recent Journal Entry</h2>
+    <div class="card">
+      <h2>📌 Latest Update</h2>
       <div class="journal-entry">
-        <h3>Week 7 – Progressive Web Apps (PWA)</h3>
-        <p>Transformed the Learning Journal into a fully installable Progressive Web App with offline capabilities using Service Workers and the Cache API.</p>
-        <p><strong>Key Achievements:</strong> Implemented "Network First" caching for dynamic data, added an App Manifest for installability, and created a real-time offline detection system to improve user experience.</p>
-        <a href="/journal">Read Full Journal Entry</a>
+        <h3>Week 7 – PWA & Game Logic</h3>
+        <p>Successfully transformed the site into an installable PWA. Added a retro "Cyber Defender" game with touch controls and local storage for high scores.</p>
+        <a href="/journal" class="project-link" style="margin-top: 10px; display: inline-block;">Read Full Log</a>
       </div>
     </div>
 
