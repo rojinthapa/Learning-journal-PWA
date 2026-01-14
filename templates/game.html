@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Learning Journal - Cyber Defender</title>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <style>
+    /* Putting styles here ensures they load immediately! */
+
+    .game-card {
+        background: #0d1117 !important; /* Force dark background */
+        color: #fff;
+        text-align: center;
+        border: 1px solid #30363d;
+        user-select: none;
+        -webkit-user-select: none;
+        padding-bottom: 2rem;
+    }
+
+    /* Score Header */
+    .game-header {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .score-box {
+        background: #161b22;
+        border: 1px solid #30363d;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
+        min-width: 100px;
+    }
+
+    .score-label {
+        display: block;
+        font-size: 0.7rem;
+        color: #58a6ff;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    #score, #high-score {
+        font-family: 'Courier New', monospace;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    /* Canvas Area */
+    .canvas-wrapper {
+        position: relative;
+        max-width: 100%; /* Fit screen */
+        width: 400px;    /* Max width */
+        margin: 0 auto;
+        border: 2px solid #58a6ff;
+        border-radius: 4px;
+        box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+        overflow: hidden;
+        background: #000;
+    }
+
+    canvas {
+        background: #010409;
+        display: block;
+        width: 100%;
+        height: auto;
+        touch-action: none;
+    }
+
+    /* Start Overlay */
+    #start-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(13, 17, 23, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        flex-direction: column;
+    }
+
+    #start-btn {
+        background: #238636;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 0 #1a6328;
+        transition: transform 0.1s;
+    }
+
+    #start-btn:active {
+        transform: translateY(4px);
+        box-shadow: none;
+    }
+
+    /* --- 🕹️ MEGA CONSOLE CONTROLS --- */
+    .console-controls {
+        display: flex;
+        justify-content: center; /* Center everything */
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        margin: 2rem auto 0; /* More top margin */
+        padding: 0 10px;
+        gap: 40px; /* Space between D-Pad and Fire */
+    }
+
+    .d-pad-horizontal {
+        display: flex;
+        gap: 20px; /* Space between arrows */
+    }
+
+    .control-btn {
+        width: 80px;  /* BIG BUTTONS */
+        height: 80px;
+        border-radius: 50%;
+        border: none;
+        font-size: 2rem;
+        color: white;
+        background: #21262d;
+        box-shadow: 0 6px 0 #161b22;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 0.1s;
+        -webkit-tap-highlight-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .control-btn:active, .control-btn.active {
+        transform: translateY(6px);
+        box-shadow: none;
+        background: #58a6ff;
+    }
+
+    /* Fire Button styling */
+    .fire {
+        background: #da3633; /* Red */
+        box-shadow: 0 6px 0 #9e2825;
+        width: 90px;
+        height: 90px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .fire:active, .fire.active {
+        background: #f85149;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <main class="main-content">
+    <button id="theme-toggle">Toggle Dark Mode</button>
+
+    <div class="card game-card">
+      <h2>🚀 Cyber Defender</h2>
+      <p>Swipe screen or use controls to survive.</p>
+
+      <div class="game-header">
+        <div class="score-box">
+            <span class="score-label">SCORE</span>
+            <span id="score">0</span>
+        </div>
+        <div class="score-box">
+            <span class="score-label">BEST</span>
+            <span id="high-score">0</span>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas" width="400" height="500"></canvas>
+        <div id="start-overlay">
+            <button id="start-btn">▶ LAUNCH MISSION</button>
+        </div>
+      </div>
+
+      <div class="console-controls">
+        <div class="d-pad-horizontal">
+            <button class="control-btn left" id="btn-left">◀</button>
+            <button class="control-btn right" id="btn-right">▶</button>
+        </div>
+        <div class="action-pad">
+            <button class="control-btn fire" id="btn-fire">🔥 FIRE</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Learning Journal. All rights reserved.</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
