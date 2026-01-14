@@ -62,6 +62,10 @@ def about():
 def projects():
     return render_template("projects.html")
 
+@app.route("/game")
+def game():
+    return render_template("game.html")
+
 # --- API ROUTES ---
 
 @app.route("/api/reflections", methods=["GET"])
@@ -73,6 +77,7 @@ def get_reflections():
 def add_reflection():
     try:
         data = request.get_json()
+        # Handle both "reflection" (from old forms) and "text" (from new forms) keys
         reflection_text = data.get("reflection") or data.get("text", "")
 
         new_reflection = {
